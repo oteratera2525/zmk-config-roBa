@@ -64,7 +64,7 @@
         };
     };
 
-    behaviors {
+        behaviors {
         lt_to_layer_0: lt_to_layer_0 {
             compatible = "zmk,behavior-hold-tap";
             label = "LAYER_TAP_TO_0";
@@ -73,8 +73,14 @@
             #binding-cells = <2>;
             tapping-term-ms = <200>;
         };
-    };
 
+        encoder_scroll: encoder_scroll {
+            compatible = "zmk,behavior-sensor-rotate-var";
+            label = "ENCODER_SCROLL";
+            #sensor-binding-cells = <2>;
+            bindings = <&msc>, <&msc>;
+        };
+    };
     keymap {
         compatible = "zmk,keymap";
 
@@ -86,7 +92,7 @@
 &kp LCTRL  &mt LEFT_SHIFT LEFT_WIN  &kp LEFT_ALT  &lt_to_layer_0 1 INT_MUHENKAN  &lt 2 LANG_ZENKAKUHANKAKU  &lt_to_layer_0 3 SPACE      &lt 5 SPACE    &kp ENTER                             &lt 6 DEL
             >;
 
-            sensor-bindings = <&inc_dec_kp UP_ARROW DOWN>;
+            sensor-bindings = <&encoder_scroll SCRL_UP SCRL_DOWN>;
         };
 
         FUNCTION {
@@ -133,7 +139,7 @@
 &trans          &trans                  &trans          &trans                   &trans   &trans      &trans  &trans                                   &trans
             >;
 
-            sensor-bindings = <&inc_dec_kp LC(PAGE_UP) LC(PAGE_DOWN)>;
+            sensor-bindings = <&encoder_scroll SCRL_UP SCRL_DOWN>;
         };
 
         layer_6 {
